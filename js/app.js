@@ -51,15 +51,15 @@ function updateBoard() {
    }
 })
 }
-updateBoard()
 
 
 function updateMessage(){
   if (winner === false && tie === false) {
-    msg = `Your turn ${winner}`
+    messageEl.textContent = `Your turn # ${turn} !`
   } else if (winner === false && tie === true) { 
-    msg = `You tied!`
+    messageEl.textContent = `You tied!`
   } else {
-    msg = `${winner} has won!`
+    messageEl.textContent = `${turn} has won!`
   }
 }
+
