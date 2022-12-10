@@ -69,7 +69,7 @@ function updateBoard() {
 function updateMessage(){
   if (winner === false && tie === false) {
     messageEl.textContent = `Your turn # ${turn} !`
-  } if (winner === false && tie === false) { 
+  } else if (winner === false && tie === true) { 
     messageEl.textContent = `You tied!`
   } else {
     messageEl.textContent = `${turn} has won!`
@@ -83,9 +83,7 @@ function handleClick(evt){
     if (board[sqIdx] !== null) {
       return
     } 
-    // if (winner === true){
-    //   return
-    // }
+   
   placePiece(sqIdx)
   checkForTie()
   checkForWinner()
