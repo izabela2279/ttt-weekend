@@ -77,11 +77,16 @@ function handleClick(evt){
   sqIdx = evt.target.id.slice(2)
     if (board[sqIdx] !== null) {
       return
-    } if (winner === true){
-      return
-    }
+    } 
+    // if (winner === true){
+    //   return
+    // }
   placePiece(sqIdx)
   checkForTie()
+  checkForWinner()
+  switchPlayerTurn()
+  console.log(winner);
+  render()
 } 
 
 function placePiece(idx){
@@ -96,6 +101,65 @@ function checkForTie(){
   console.log(check);
 }
 
+console.log(checkForTie);
+
+function checkForWinner() {
+  winningCombos.forEach(function(combo){
+    let comboSum = combo.reduce(function(sum,sqrId){
+      return sum + board[sqrId]
+      },0)
+      if (comboSum === 3 || comboSum === -3) {
+      winner = true
+      }
+})
+}
+console.log(checkForWinner);
+
+// const checkForWinner = winningCombos.map(function(el,idx,arr){
+//   let sum = 0
+//   for (let i = 0; i<= idx; i++)
+//   sum += el[i]
+// console.log(sum)
+// })
+
+  
+
+  // {
+  // console.log(el);
+  // console.log(idx);
+  // console.log(arr);
+//   let el.split; i < idx; i++
+//     if (i === 3){
+//       return winner === true
+//     }
+// })
+
+console.log(winner);
 
 
 
+// function checkForWinner() {
+//   winningCombos.some(function(){
+//     let (i = 0; i < sqIdx.length; i++)
+//     return winner === "true"
+//   })
+//   }
+
+  // loop through each of the winning combinations (9 in total)
+  // convert the array to index
+  // if index total equals 3 we have a winner
+
+  // let winning = winningCombos.some(function(win)){
+  //   if (win === true) {
+  //     return
+  //   }
+  // }
+
+function switchPlayerTurn(){
+  if (winner === false){
+    return (turn * -1)
+  } else if (winner === true){
+    return
+  }
+  render()
+}
