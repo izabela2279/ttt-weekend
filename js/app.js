@@ -58,7 +58,7 @@ function updateBoard() {
     } else {
       squareEls[idx].textContent = ""
     }
-})
+    })
 }
 
 
@@ -157,7 +157,7 @@ console.log(winner);
 
 function switchPlayerTurn(){
   if (winner === false){
-    return (turn * -1)
+    turn = turn * -1
   } else if (winner === true){
     return
   }
