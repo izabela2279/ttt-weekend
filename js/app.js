@@ -22,15 +22,19 @@ let board, turn, winner, tie
 /*------------------------ Cached Element References ------------------------*/
 const squareEls = document.querySelectorAll(".sqr")
 const messageEl = document.getElementById("message")
-
-console.log(squareEls);
-console.log(messageEl);
+const resetBtnEl = document.getElementById("button")
 
 /*----------------------------- Event Listeners -----------------------------*/
 squareEls.forEach(function(square){
   square.addEventListener("click", handleClick)
 })
 
+resetBtnEl.addEventListener("click", function(){
+  init()
+})
+
+
+// console.log(resetBtnEl);
 /*-------------------------------- Functions --------------------------------*/
 
 function init(){
@@ -42,7 +46,7 @@ function init(){
 }
 init()
 
-console.log(init);
+// console.log(init);
 
 function render(){
   updateBoard()
@@ -65,12 +69,13 @@ function updateBoard() {
 function updateMessage(){
   if (winner === false && tie === false) {
     messageEl.textContent = `Your turn # ${turn} !`
-  } else if (winner === false && tie === true) { 
+  } if (winner === false && tie === false) { 
     messageEl.textContent = `You tied!`
   } else {
     messageEl.textContent = `${turn} has won!`
   }
 }
+
 
 
 function handleClick(evt){
@@ -115,45 +120,8 @@ function checkForWinner() {
 }
 console.log(checkForWinner);
 
-// const checkForWinner = winningCombos.map(function(el,idx,arr){
-//   let sum = 0
-//   for (let i = 0; i<= idx; i++)
-//   sum += el[i]
-// console.log(sum)
-// })
-
-  
-
-  // {
-  // console.log(el);
-  // console.log(idx);
-  // console.log(arr);
-//   let el.split; i < idx; i++
-//     if (i === 3){
-//       return winner === true
-//     }
-// })
-
 console.log(winner);
 
-
-
-// function checkForWinner() {
-//   winningCombos.some(function(){
-//     let (i = 0; i < sqIdx.length; i++)
-//     return winner === "true"
-//   })
-//   }
-
-  // loop through each of the winning combinations (9 in total)
-  // convert the array to index
-  // if index total equals 3 we have a winner
-
-  // let winning = winningCombos.some(function(win)){
-  //   if (win === true) {
-  //     return
-  //   }
-  // }
 
 function switchPlayerTurn(){
   if (winner === false){
