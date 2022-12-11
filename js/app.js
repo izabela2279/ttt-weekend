@@ -33,6 +33,7 @@ resetBtnEl.addEventListener("click", function(){
   init()
 })
 
+console.log(squareEls);
 
 // console.log(resetBtnEl);
 /*-------------------------------- Functions --------------------------------*/
@@ -68,14 +69,15 @@ function updateBoard() {
 
 function updateMessage(){
   if (winner === false && tie === false) {
-    messageEl.textContent = `Your turn # ${turn} !`
+    messageEl.textContent = `Your turn player ${turn} !`
   } else if (winner === false && tie === true) { 
     messageEl.textContent = `You tied!`
   } else {
-    messageEl.textContent = `${turn} has won!`
+    messageEl.textContent = `Player ${turn} has won!`
   }
 }
 
+updateMessage()
 
 
 function handleClick(evt){
@@ -96,15 +98,14 @@ function placePiece(idx){
   board[idx] = turn
 }
 
+
 function checkForTie(){
-  let check = board.every(function(square){
-    return square !== null
+  let boardFilled = board.every(function(allSqrs){
+    return allSqrs === -1 || allSqrs === 1
   })
-  console.log(board);
-  console.log(check);
+  tie = boardFilled
 }
 
-console.log(checkForTie);
 
 function checkForWinner() {
   winningCombos.forEach(function(combo){
@@ -116,9 +117,6 @@ function checkForWinner() {
       }
 })
 }
-console.log(checkForWinner);
-
-console.log(winner);
 
 
 function switchPlayerTurn(){
