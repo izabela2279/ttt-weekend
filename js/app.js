@@ -67,21 +67,46 @@ function updateBoard() {
 }
 
 
+
+
 function updateMessage(){
   if (winner === false && tie === false) {
-    messageEl.textContent = `Your turn player ${turn} !`
+    messageEl.textContent = `Your turn player ${turn === 1 ? "X" : "O"} !`
   } else if (winner === false && tie === true) { 
     messageEl.textContent = `You tied!`
   } else {
-    messageEl.textContent = `Player ${turn} has won!`
+    messageEl.textContent = `Player ${turn === 1 ? "X" : "O"} has won!`
   }
 }
+
+//cleaner way to write it (!winner && !tie)
+
+// function updateMessage(){
+//   if (winner === false && tie === false) {
+//     messageEl.textContent = `Your turn player ${turn} !`
+//       if (turn === 1){
+//         return turn = "X"
+//       } else {
+//         return turn = "O"
+//       }
+//   } else if (winner === false && tie === true) { 
+//     messageEl.textContent = `You tied!`
+//   } else {
+//     messageEl.textContent = `Player ${turn} has won!`
+//       if (turn === 1){
+//         return turn = "X"
+//       } else {
+//         return turn = "O"
+//       }
+//     }
+//   }
+
 
 updateMessage()
 
 
 function handleClick(evt){
-  sqIdx = evt.target.id.slice(2)
+  sqIdx = parseInt(evt.target.id.slice(2))
     if (board[sqIdx] !== null) {
       return
     } 
@@ -106,6 +131,9 @@ function checkForTie(){
   tie = boardFilled
 }
 
+//if (board.includes(null)) return
+//tie = true
+
 
 function checkForWinner() {
   winningCombos.forEach(function(combo){
@@ -125,5 +153,6 @@ function switchPlayerTurn(){
   } else if (winner === true){
     return
   }
-  render()
 }
+
+//cleaner version -> turn *= -1
